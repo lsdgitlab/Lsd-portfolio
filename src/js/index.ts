@@ -102,3 +102,32 @@ if ($('#performanceCarousel').length) {
     smartSpeed: 2000,
   })
 };
+if ($('#uiUxCarousel').length) {
+  let uiUxCarousel = $("#uiUxCarousel").owlCarousel({
+    margin:20,
+    items: 2,
+    dots:false,
+    nav:true,
+    // center:true,
+    stagePadding: 200,
+    navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+    autoplayTimeout: 5000,
+    // loop:true,
+    smartSpeed: 2000,
+  })
+};
+
+if ($('#caseStudiesCarousel').length) {
+  let caseStudiesCarousel = $("#caseStudiesCarousel").owlCarousel({
+    margin:0,
+    items: 1.6,
+    dots:false,
+    nav:true,
+    center:true,
+    stagePadding: 200,
+    navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+    autoplayTimeout: 5000,
+    loop:true,
+    smartSpeed: 2000,
+  })
+};

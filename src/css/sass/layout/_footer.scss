@@ -2,5 +2,14 @@
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
 footer{
-
+  background-color: #1f1f23;
+  padding: 40px 0;
+  p{
+    font-size: 12px;
+    line-height: 29px;
+    color: #c2c2c3;
+    font-weight: 500;
+    font-family: "Montserrat";
+    text-align: center;
+  }
 }
