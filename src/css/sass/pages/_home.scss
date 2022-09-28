@@ -241,6 +241,22 @@
             // visibility: hidden;
             display: none;
             background-color: #ffffff;
+            .link{
+              font-size: 12px;
+              line-height: 30px;
+              text-decoration: underline;
+              color: #000000;
+              font-weight: 400;
+              font-family: "Montserrat";
+            }
+            .red-link{
+              font-size: 16px;
+              line-height: 30px;
+              text-transform: uppercase;
+              color: #f15b25;
+              font-weight: 700;
+              font-family: "Montserrat";
+            }
             h4{
               font-size: 20px;
               line-height: 30px;
@@ -264,10 +280,10 @@
         
           &:hover{
             .art-card{
-              width: calc(100% + 40px) ;
+              width: calc(100% + 60px) ;
               z-index: 5;
               position: absolute;
-              left: -20px;
+              left: -30px;
               top: -40px;
               height: 100%;
               border-radius: 2px;
@@ -460,7 +476,7 @@
     .case-studies-carousel{
   
       .owl-stage-outer{
-        padding-bottom: 200px;
+        // padding-bottom: 200px;
         overflow: visible;
         // overflow-x: hidden;
       }
@@ -480,6 +496,10 @@
             .tumb , .top-row{
               grid-column: 1/-1;
               grid-row: 1/-1;
+            }
+            .tumb{
+              width: 100%;
+              height: auto;
             }
             .dimond{
               width: 60px;
@@ -557,30 +577,99 @@
             }
           }
         }
-        .item{
-          // background-color: yellow;
+        // .item{
+        //   // background-color: yellow;
         
-          &:hover{
-            .art-card{
-              // width: calc(100% + 40px) ;
-              z-index: 5;
-              position: absolute;
-              // left: -20px;
-              // top: -40px;
-              // height: 100%;
-              border-radius: 2px;
-              filter: drop-shadow(0 0 25px rgba(15,15,15,0.2));
-              background-color: #ffffff;
-            }
+          
+        // }
+        &.active.center{
+          .art-card{
+            // width: calc(100% + 40px) ;
+            z-index: 5;
+            // position: absolute;
+            // left: -20px;
+            // top: -40px;
+            // height: 100%;
+            border-radius: 2px;
+            filter: drop-shadow(0 0 25px rgba(15,15,15,0.2));
             background-color: #ffffff;
-            .bottom-row{
-              // visibility: visible;
-              display: flex;
-            }
+          }
+          background-color: #ffffff;
+          .bottom-row{
+            // visibility: visible;
+            display: flex;
           }
         }
       }
       
+    }
+  }
+  .brand-section{
+    margin-bottom: 100px;
+    .brands-carousel{
+      .image-container{
+        padding: 80px 0;
+      }
+      .recog-text{
+        padding: 24px;
+        background-color: #00000051;
+        justify-content: space-between;
+        a{
+          font-size: 12px;
+          line-height: 30px;
+          color: #000000;
+          font-weight: 600;
+          font-family: "Montserrat";
+        }
+      }
+      .art-card{
+        background-color: #ffffff;
+        img{
+          width: auto;
+        }
+      }
+    }
+  }
+  .team-section{
+    .link-title{
+      font-size: 30px;
+      color: #ffffff;
+      font-weight: 500;
+      font-family: "Montserrat";
+      text-align: center;
+      display: block;
+    }
+    .team-content{
+      padding-bottom: 80px;
+      .card{
+        margin-bottom: 16px;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: calc(25% - 40px);
+        .person-info{
+          
+          .user-img{
+            margin-bottom: 16px;
+
+          }
+          .user-info{
+            .name{
+              font-size: 20px;
+              line-height: 1.5;
+              color: #ffffff;
+              font-weight: 700;
+              font-family: "Montserrat";
+            }
+            .degig{
+              font-size: 12px;
+              line-height: 1.5;
+              color: #ffffff;
+              font-weight: 400;
+              font-family: "Montserrat";
+            }
+          }
+        }
+      }
     }
   }
 }

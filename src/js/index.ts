@@ -62,7 +62,7 @@ if ($('#bannerCarousel').length) {
 };
 if ($('#filmsCarousel').length) {
   let filmsCarousel = $("#filmsCarousel").owlCarousel({
-    margin:20,
+    margin:30,
     items: 3,
     dots:false,
     nav:true,
@@ -75,7 +75,7 @@ if ($('#filmsCarousel').length) {
 };
 if ($('#socialCarousel').length) {
   let socialCarousel = $("#socialCarousel").owlCarousel({
-    margin:20,
+    margin:40,
     items: 3.8,
     dots:false,
     nav:true,
@@ -90,7 +90,7 @@ if ($('#socialCarousel').length) {
 
 if ($('#performanceCarousel').length) {
   let performanceCarousel = $("#performanceCarousel").owlCarousel({
-    margin:20,
+    margin:40,
     items: 3.8,
     dots:false,
     nav:true,
@@ -104,7 +104,7 @@ if ($('#performanceCarousel').length) {
 };
 if ($('#uiUxCarousel').length) {
   let uiUxCarousel = $("#uiUxCarousel").owlCarousel({
-    margin:20,
+    margin:40,
     items: 2,
     dots:false,
     nav:true,
@@ -117,6 +117,20 @@ if ($('#uiUxCarousel').length) {
   })
 };
 
+if ($('#brandsCarousel').length) {
+  let brandsCarousel = $("#brandsCarousel").owlCarousel({
+    margin:40,
+    items: 4,
+    dots:false,
+    nav:true,
+    // center:true,
+    stagePadding: 200,
+    navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+    autoplayTimeout: 5000,
+    // loop:true,
+    smartSpeed: 2000,
+  })
+};
 if ($('#caseStudiesCarousel').length) {
   let caseStudiesCarousel = $("#caseStudiesCarousel").owlCarousel({
     margin:0,

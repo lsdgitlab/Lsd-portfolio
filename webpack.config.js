@@ -11,7 +11,11 @@ const devMode = process.env.NODE_ENV !== "production";
 const htmlPageNames = [
     {
         pageName: 'index.html',
-        title:'Lsdigital gallery'
+        title: 'Lsdigital gallery'
+    }, 
+    {
+        pageName: 'brand.html',
+        title: 'Lsdigital gallery'
     }, 
 ];
 let htmlFileName = htmlPageNames.map(htmlPage=> htmlPage.pageName);

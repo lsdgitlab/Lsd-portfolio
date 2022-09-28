@@ -83,7 +83,48 @@ a{
     margin: 0;
   }
 }
-
+.main-warpper{
+  min-height: 60vh;
+}
+.di-grid{
+  display: grid;
+}
+.sticky-nav{
+  background-color: #000000;
+  padding: 24px;
+  text-align: center;
+  a{
+    font-size: 16px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: "Montserrat";
+    display: inline-block;
+    margin: 0 16px;
+    &.active{
+      color: #f15b25;
+    }
+    &:hover{
+      color: #8b8b8b;
+    }
+  }
+}
+.second-title{
+  font-size: 30px;
+  line-height: 1.5;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: "Montserrat";
+  margin-bottom: 24px;
+  span{
+    font-size: 16px;
+    color: #ffffff3d;
+  }
+}
+.pad-60{
+  margin: 30px 0;
+}
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
