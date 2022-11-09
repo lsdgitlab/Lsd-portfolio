@@ -35,17 +35,15 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 });
 // console.log("==========>> multipleHtmlPlugins << =============")
 // console.log(multipleHtmlPlugins)
-module.exports = (env, argv) => ({
-    // mode: argv.mode,
-    // devtool: argv.mode === 'development' ? 'source-map' : false,
-    // mode: "development",
+module.exports = {
+    mode: "development",
     entry:{
         main:path.resolve(__dirname, 'src/js/index.ts'),
         // style:path.resolve(__dirname, 'src/scss/index.scss')
     },
     output:{
         path: path.resolve(__dirname, 'dist'),
-        filename:'./js/[name].[contenthash].js',
+        filename:'[name].[contenthash].js',
         clean:true,
         // options:{
         //     // name: '[name][ext]',
@@ -70,13 +68,49 @@ module.exports = (env, argv) => ({
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [MiniCssExtractPlugin.loader,"css-loader","sass-loader"], 
+                
+                // use: [MiniCssExtractPlugin.loader,"css-loader","sass-loader",{
+                //     // loader: "sass-loader",
+                //     options: {
+                //             // Prefer `dart-sass`
+                //             name: '[name][ext]',
+                //             implementation: require("sass"),
+                //             // outputPath :'./css/scss/'
+                //         },
+                //     },], 
+                // use: [{
+                //         loader: 'sass-loader',
+                //         options: {
+                //             name: '[name][ext]'
+                //         }  
+                //     },
+                //     {
+                //         loader: MiniCssExtractPlugin.loader
+                //     },
+                //     {
+                //         loader: 'css-loader'
+                //     },
+                // ]
+                // use: ["style-loader","css-loader", "sass-loader"], 
+                // use:{
+                //     loader: [MiniCssExtractPlugin.loader,"css-loader", "sass-loader"],   
+                //     // options:{
+                //     //     name: '[name][ext]',
+                //     //     outputPath :'./css/scss/'
+                //     // } 
+                // }  
             },
             //images
-            {
-                test: /\.(svg|png|jpg|webp|ico|jpeg)$/,
-                type: 'asset/resource',
-                
-            },
+            // {
+            //     test: /\.(svg|png|jpg|webp|ico|jpeg)$/,  
+            //     type: 'asset/resource',           
+            //     // loader:'file-loader',
+            //     // esModule: false,
+            //     options:{
+            //         name: '[path][name].[ext]',
+            //         outputPath :'./img/'
+            //     }
+            // },
             // js babel
             {   
                 test: /\.m?js$/,
@@ -98,20 +132,42 @@ module.exports = (env, argv) => ({
    
     //  // Plugins
     plugins:[
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            // filename: devMode ? "[name].css" : "./css/scss/[name].[contenthash].css",
-            filename: devMode ? "./css/scss/[name].[contenthash].css" : "[name].css",
-        }),
+        // new HtmlWebpackPlugin({
+        //     template: path.resolve(__dirname, 'src/index.html'),
+        //     chunks: ['main']
+        // }),
+        // ...multipleHtmlPlugins,
+        // new HtmlWebpackPlugin({
+        //     title: "Blog",
+        //     filename: "index.html",
+        //     template: path.resolve(__dirname, 'src/index.html')
+        // }),
+        
+    //    new HtmlWebpackPlugin({
+    //         title: "Progress",
+    //         filename: "biography.html",
+    //         template: path.resolve(__dirname, 'src/biography.html')
+    //    }),
+    //    {
+    //     filename: "../../[name].css"
+    // }
+       new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        // filename: devMode ? "[name].css" : "./css/scss/[name].[contenthash].css",
+        filename: devMode ? "./css/scss/[name].[contenthash].css" : "[name].css",
+        // chunkFilename: devMode ? "[id].css" : "[id].[contenthash].css",
+      }),
         new HtmlWebpackPartialsPlugin({
             path:path.join(__dirname,'./src/header.html'),
             location:'header',
+            // template: path.resolve(__dirname, 'src/index.html')
             template_filename: htmlFileName
         }),
         new HtmlWebpackPartialsPlugin({
             path:path.join(__dirname,'./src/footer.html'),
             location:'footer',
+            // template: path.resolve(__dirname, 'src/index.html')
             template_filename: htmlFileName
         }),
        new webpack.ProvidePlugin({
@@ -131,4 +187,6 @@ module.exports = (env, argv) => ({
       
     //    new CleanWebpackPlugin(['dist'])
     ].concat(multipleHtmlPlugins)
-})
+    // 
+    
+}

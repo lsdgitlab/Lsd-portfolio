@@ -3,10 +3,10 @@
   padding-top: 220px;
   overflow: hidden;
   .brand-info-section{
-    background-image: url('./../../img/brand-bg.png');
+    background-image: url('~./../../img/brand-bg.png');
     background-position: right;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     padding: 100px 0;
     .brand-info{
       align-items: center;
@@ -102,6 +102,72 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+    &.ui-ux-section{
+      .web-contain{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        .art-card{
+          background-color: rgb(109, 90, 111);
+          margin-bottom: 36px;
+          .info-web{
+            padding: 40px 40px 20px 40px;
+            .inf-title{
+              font-size: 24px;
+              line-height: 1.5;
+              color: #ffffff;
+              font-weight: 700;
+              font-family: "Montserrat";
+              margin-bottom: 20px;
+            }
+            .sub-title, a{
+              font-size: 16px;
+              line-height: 1.5;
+              color: #ffffff;
+              font-weight: 500;
+              font-family: "Montserrat";
+              margin-bottom: 16px;
+            }
+            .link-box{
+              a{
+                padding: 0 16px;
+                margin: 0;
+                text-transform: uppercase;
+                &:first-child{
+                  padding-left: 0;
+                }
+              }
+              .red-text{
+                color: #f15b25;
+              }
+            }
+           
+          }
+          .image-container{
+            padding-left: 40px;
+            overflow: hidden;
+            position: relative;
+            &::before{
+              content: " ";
+              background-color: #0000001d;
+              display: block;
+              position: absolute;
+              left: 30px;
+              top: 10px;
+              height: 100%;
+              width: 100%;
+            }
+            img{
+              position: relative;
+            }
+          }
+        }
+      }
+    }
   }
-
+  .brand-section{
+    .art-card{
+      margin: 24px 0;
+    }
+    margin-bottom: 100px;
+  }
 }

@@ -25,6 +25,9 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    &.disabled{
+      display: none;
+    }
   }
   .owl-nav button.owl-prev{
     img{

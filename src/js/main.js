@@ -27,5 +27,10 @@ function gotoId(id){
             scrollTop: $("#"+id).offset().top - heightOfNav,
         }, 1000);
 }
-
-export {main, gotoId}
+function playPause(video) { 
+    if (video.paused) 
+        video.play(); 
+    else 
+        video.pause(); 
+} 
+export { gotoId, playPause}

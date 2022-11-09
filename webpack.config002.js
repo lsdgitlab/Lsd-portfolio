@@ -4,7 +4,7 @@ const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
-const devMode = process.env.NODE_ENV !== "production";
+// const devMode = process.env.NODE_ENV !== "production";
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // console.log("devMode")
 // console.log(devMode)
@@ -25,10 +25,7 @@ const htmlPageNames = [
 let htmlFileName = htmlPageNames.map(htmlPage=> htmlPage.pageName);
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
-        // template: `./src/${name.pageName}`,
         filename: `${name.pageName}`, 
-        // chunks: [`${name.pageName}`],
-        // chunks: [name.pageName.replace(/-(\w)/g, (match, c) => c.toUpperCase())],
         title: name.title,
         template: path.resolve(__dirname, `src/${name.pageName}`),
     })
@@ -36,13 +33,17 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 // console.log("==========>> multipleHtmlPlugins << =============")
 // console.log(multipleHtmlPlugins)
 module.exports = (env, argv) => ({
-    // mode: argv.mode,
-    // devtool: argv.mode === 'development' ? 'source-map' : false,
+    mode: argv.mode,
+    devtool: argv.mode === 'development' ? 'source-map' : false,
     // mode: "development",
-    entry:{
-        main:path.resolve(__dirname, 'src/js/index.ts'),
-        // style:path.resolve(__dirname, 'src/scss/index.scss')
-    },
+    // entry:{
+    //     main:path.resolve(__dirname, 'src/js/index.ts'),
+    //     style:path.resolve(__dirname, 'src/css/scss/index.scss')
+    // },
+    entry: [
+        './src/js/index.ts',
+        // './src/css/scss/index.scss',
+      ],
     output:{
         path: path.resolve(__dirname, 'dist'),
         filename:'./js/[name].[contenthash].js',
@@ -53,28 +54,92 @@ module.exports = (env, argv) => ({
         // }
         // assetModuleFilename: '[name].[ext]'
     },
-    devtool: 'source-map',
+    // optimization: {
+    //     minimizer: [
+    //       new OptimizeCSSAssetsPlugin(),
+    //     //   new CopyPlugin({
+    //     //     patterns: [{
+    //     //       from: 'src/*.html',
+    //     //       to: '[name].[ext]',
+    //     //     }, {
+    //     //       from: 'src/images/*',
+    //     //       to: 'images/[name].[ext]',
+    //     //     }],
+    //     //   }),
+    //     ],
+    //   },
+
+    // devtool: 'source-map',
     devServer:{
-        static: path.resolve(__dirname, 'src'),
+        static: {
+            directory: path.join(__dirname, 'src'),
+        },
+        
+        // contentBase: [
+        //     // path.join(__dirname, '/src'),
+        //     '/src'
+        // ],
+        // watchContentBase: true,
         port: 5001,
         open: true,
         hot: true,
         // compress: true,
         // historyApiFallback: true,
     },
+
     // loaders
+    
     module:{
-        
         rules:[
-            //css
             {
-                test: /\.(sa|sc|c)ss$/,
-                use: [MiniCssExtractPlugin.loader,"css-loader","sass-loader"], 
+                test: /\.(scss)$/,
+                use: [
+                  {
+                    loader: MiniCssExtractPlugin.loader,
+                  }, {
+                    loader: 'css-loader',
+                    options: {
+                      url: false,
+                    },
+                  }, {
+                    loader: 'postcss-loader',
+                    options: {
+                      postcssOptions: {
+                        plugins: [
+                          ['autoprefixer'],
+                        ],
+                      },
+                    },
+                  }, {
+                    loader: 'sass-loader',
+                    options: {
+                      implementation: require('sass'),
+                    },
+                  },
+                ],
             },
             //images
             {
                 test: /\.(svg|png|jpg|webp|ico|jpeg)$/,
-                type: 'asset/resource',
+                use: [
+                  {
+                      loader: "file-loader",
+                      /**
+                       * use `name` to specify how and where images should be outputted
+                       *
+                       * 1. use the image's filepath to set the URL path from which it's served
+                       * 2. use the image's filename and contenthash to set its URL filename
+                       */
+                      options: {
+                          name: "[path][name].[contenthash].[ext]",
+                          // you may need to set `outputPath` too if you want
+                          // to specify how/where images should be outputted
+                      },
+                  },
+                  {
+                      loader: 'image-webpack-loader'
+                  },
+              ],
                 
             },
             // js babel
@@ -101,8 +166,8 @@ module.exports = (env, argv) => ({
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            // filename: devMode ? "[name].css" : "./css/scss/[name].[contenthash].css",
-            filename: devMode ? "./css/scss/[name].[contenthash].css" : "[name].css",
+            filename: argv.mode === 'production' ? "[name].css" : "./css/scss/[name].[contenthash].css",
+            // filename: devMode ? "./css/scss/[name].[contenthash].css" : "[name].css",
         }),
         new HtmlWebpackPartialsPlugin({
             path:path.join(__dirname,'./src/header.html'),
