@@ -9,11 +9,61 @@ import {gotoId, playPause} from "./main";   // import the function from another 
 
 import contentData  from "./showDate.json"; // iport the json obj from another json file
 // import contentData  from "./showDateTest.json";
-// console.log("contentData")
-// console.log(contentData)
+console.log("contentData")
+console.log(contentData)
 
+// contentData.contentData.forEach(element => {
+//   element.isPriority = true;
+//   element.prioritySq = 1;
+//   element.toString()
+// });
+// console.log("contentData-------")
+// console.log(JSON.stringify(contentData.contentData))
+// interface Person {
+//   imageThumb: string; 
+//   imageBig: string; 
+//   contentTitle: string; 
+//   contentSubtitle: string; 
+//   type: string; 
+//   company: string; 
+//   filter: string; 
+//   size: number[]; 
+// }
 let bannerData = [];
-// find the unique filter and it's count from the obj
+// let bannerData : { 
+//   imageThumb: string, 
+//   imageBig: string,
+//   contentTitle: string,
+//   contentSubtitle: string, 
+//   type: string, 
+//   company: string, 
+//   filter: string, 
+//   size: number[] } [] ;
+// bannerData = contentData.contentData.filter((indivData)=> {
+//   console.log(indivData.filter)
+//   // if(indivData. 'Animated-Videos'){
+
+//   // }
+// })
+
+// bannerData = contentData.contentData.reduce(getCompany, 0)
+// let unique = [...new Set(contentData.contentData.filter)];
+
+// console.log(unique)
+// function onlyUnique(value, index, self) {
+//   console.log("value")
+//   console.log(value.company)
+//   console.log(index)
+//   console.log(self)
+//   // return self.indexOf(value.company) === s;
+// }
+
+// // usage example:
+// var a = ['a', 1, 'a', 2, '1'];
+// var unique = contentData.contentData.filter(onlyUnique);
+
+// console.log(unique); 
+
 let filterType = contentData.contentData.reduce(function(acc, curr){
   if(acc[curr.filter]){
     acc[curr.filter] == ++acc[curr.filter];
@@ -23,23 +73,17 @@ let filterType = contentData.contentData.reduce(function(acc, curr){
   return acc;
 },{});
 
-// console.log("filterType")
-// console.log(filterType)
 
-// get the unique category from the obj
 const uniqueCat = [...new Set(contentData.contentData.map(item => item.filter))]; 
-// console.log("unique")
-// console.log(uniqueCat)
+console.log("unique")
+console.log(uniqueCat)
 
-// convert the obj to arr
 let WithArray = Object.entries(filterType)
-// console.log(WithArray)
-
-//  rearage the data for beter usege
+console.log(WithArray)
 let newCateWithData = WithArray.forEach(function (item) {
   item.catdata = [];
-  // console.log(item[0])
-  // console.log(item[1])
+  console.log(item[0])
+  console.log(item[1])
   item.type= item[0];
   item.datalength= item[1];
   // if()
@@ -55,24 +99,50 @@ let newCateWithData = WithArray.forEach(function (item) {
   // item[0].push()
 })
 
-// console.log("newCateWithData")
-// console.log(newCateWithData)
-// console.log("filterType")
-// console.log(WithArray)
+console.log("newCateWithData")
+console.log(newCateWithData)
+console.log("filterType")
+console.log(WithArray)
 // console.log([filterType])
 // console.log(filterType)
 // console.log(Object.entries(filterType))
 
 
 
-// module for lazy loading of images and video , etc.
+
 const observer = lozad();
 observer.observe();
 
+$('.gotoSection').on( "click", function(){
+  let id = $(this).data("to-section");
+  gotoId(id)
+})
+$(function () {
+  $(".info-box p").slice(0, 2).show();
+  $(".readMore").on('click', function (e) {
+      e.preventDefault();
+      $(".info-box p:hidden").slice(0, 4).slideDown();
+      if ($(".info-box p:hidden").length == 0) {
+        // $("#load").fadeOut('slow');
+        $(this).hide()
+      }
+      // console.log($(this))
+      // $(this).hide()
+      // $('html,body').animate({
+      //     scrollTop: $(this).offset().top
+      // }, 1500);
+  });
+});
 
-// reusable function with para and call api call for video play and stop 
+$('#scrollToTop').on('click', function () {
+  $('body,html').animate({
+      scrollTop: 0,
+      duration:10000,
+  }, 600);
+  return false;
+});
 function pauseAllVideo(videos) {
-  // console.log("pauseAllVideo")
+  console.log("pauseAllVideo")
   videos.each(item=>{
       let videoEl = $(videos[item]).find('video').get()[0];
       let playBtnEl = $(videos[item]).find('.play-btn');
@@ -86,8 +156,6 @@ function pauseAllVideo(videos) {
 // function playPause(){
 //   console.log("click")
 // }
-
-// video play and stop fun
 $(".playBtnFun").on('click', function () {
     let id = $(this).data("video-id");
     let VideoEl = $('#'+id).find('video').get()[0];
@@ -99,9 +167,15 @@ $(".playBtnFun").on('click', function () {
 })
 
 
-
+$(window).on('scroll',function () {
+  if ($(this).scrollTop() > 400) {
+    $('#scrollToTop').fadeIn();
+  } else {
+    $('#scrollToTop').fadeOut();
+  }
+});
 $(document).ready(function() {
-  // console.log("blck");
+  console.log("blck");
   
   if ($('#bannerCarousel').length) {
     let bannerCarousel = $("#bannerCarousel").owlCarousel({
@@ -112,15 +186,41 @@ $(document).ready(function() {
       // center: true,
       stagePadding: 200,
       navText : ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      // autoplayTimeout: 5000,
+      // loop:true,
+      // smartSpeed: 2000,
+      // afterAction : callback,
     })
     bannerCarousel.on('changed.owl.carousel', function(event) {
       var active = $("#bannerCarousel").find(".owl-item.active");
       let activeElIndex = event.relatedTarget.current()
+      // console.log(this)
+      // console.log("$(this).find('.owl-item.active').get()[0]")
+      // console.log($(this).find('.owl-item.active').get()[0])
+
       let elemnt = $(this).find('.owl-item')
+      // console.log("elemnt[activeElIndex]")
+      // console.log(elemnt[activeElIndex])
+      
       pauseAllVideo(elemnt)
       let playBtnEl = $(elemnt[activeElIndex]).find('.play-btn');
       playBtnEl.click()
+      // console.log(elemnt)
+      // elemnt.each(item=>{
+      //   console.log(elemnt[item])
+      //   console.log(event.relatedTarget.current())
+      //   // console.log(elemnt[item].find('.active').get()[0])
+      //   // console.log(this)
+      // })
     })
+    
+    // function callback(event) {
+    //   console.log("clcik")
+    //   console.log(event)
+    //   console.log(this)
+    //   console.log($(this))
+    //   console.log($(this).find('.owl-item.active video').get()[0])
+    // }
   };
   if ($('#filmsCarousel').length) {
     let filmsCarousel = $("#filmsCarousel").owlCarousel({
@@ -130,6 +230,9 @@ $(document).ready(function() {
       nav:true,
       stagePadding: 200,
       navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      // autoplayTimeout: 5000,
+      // loop:true,
+      // smartSpeed: 2000,
     })
   };
   if ($('#socialCarousel').length) {
@@ -203,6 +306,4 @@ $(document).ready(function() {
     })
   };
 });
-
-// get js file from the below file to use
 import "./page-animation/barba";
