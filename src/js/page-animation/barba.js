@@ -235,21 +235,23 @@ tl.from(".anim2", {y:"100%", rotation: 10, duration: 1.8,stagger: .6, opacity: 0
 //   ease: "power4"
 // })
 
-// let container = document.getElementById('mainPeople');
+let container = document.getElementById('mainPeople');
+console.log(container)
+gsap.to(container, {
+            x: () => -(container.scrollWidth - document.documentElement.clientWidth) + "px",
+            ease: "none",
+            scrollTrigger: {
+                trigger: container,
+                start: "-=800",
+                // end: () => "+=" + container.offsetWidth,
+                scrub: true,
+                // pin: true,
+                anticipatePin: 1,
+                markers:true,
+                // pinSpacing: false 
+            }
 
-// gsap.to(container, {
-//             x: () => -(container.scrollWidth - document.documentElement.clientWidth) + "px",
-//             ease: "none",
-//             scrollTrigger: {
-//                 trigger: container,
-//                 start: "top top",
-//                 end: () => "+=" + container.offsetWidth,
-//                 scrub: true,
-//                 pin: true,
-//                 anticipatePin: 1
-//             }
-
-//         });
+        });
 
 // .from(".line-2", {
 //   scaleX:0,
