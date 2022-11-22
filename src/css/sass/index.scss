@@ -1,5 +1,11 @@
 @charset "UTF-8";
-
+:root {
+  --easing: cubic-bezier(0.5, 0.7, 0.4, 1);
+}
+body {
+  --page-background: #404046;
+  background-color: var(--page-background);
+}
 // // 1. Configuration and helpers
 @import
   'abstracts/variables',
@@ -26,9 +32,11 @@
 
 // // 6. Page-specific styles
 @import
-  'pages/home';
+  'pages/home',
+  'pages/category',
+  'pages/brand';
   // ,
-  // 'pages/biography'
+  // 'pages/_category'
 
 // // 7. Themes
 @import

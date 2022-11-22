@@ -1,0 +1,28 @@
+.category-page{
+  header{
+    border-bottom: 1px solid #66666b;
+  }
+  background-color: #404046;
+  .main-warpper{
+    padding-top: 60px;
+
+  }
+  overflow: hidden;
+  .title-row{
+    justify-content: space-between;
+    margin-bottom: 60px;
+    .filter-select{
+      display: flex;
+      .select-control{
+        width: 200px;
+        margin-left: 20px;
+        .select-label{
+          background-color: #404046;
+        }
+      }
+    }
+  }
+  .content-sec{
+    margin-bottom: 100px;
+  }
+}

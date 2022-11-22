@@ -6,7 +6,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const devMode = process.env.NODE_ENV !== "production";
 
-// all pages name that require in the project
+// all pages 
 const htmlPageNames = [
     {
         pageName: 'index.html',
@@ -42,31 +42,37 @@ module.exports = (env, argv) => ({
         path: path.resolve(__dirname, 'dist'),
         filename:'./js/[name].[contenthash].js',
         clean:true,
+        // options:{
+        //     // name: '[name][ext]',
+        //     outputPath :'./js/'
+        // }
+        // assetModuleFilename: '[name].[ext]'
     },
-    // if source map of js file 
     devtool: 'source-map',
-    // devserver is use to run html pages on browser we can also set the port
     devServer:{
         static: path.resolve(__dirname, 'src'),
         port: 5001,
         open: true,
         hot: true,
+        // compress: true,
+        // historyApiFallback: true,
     },
     // loaders
     module:{
+        
         rules:[
-            //css 
+            //css
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [MiniCssExtractPlugin.loader,"css-loader","sass-loader"], 
             },
-            //images 
+            //images
             {
                 test: /\.(svg|png|jpg|webp|ico|jpeg)$/,
                 type: 'asset/resource',
                 
             },
-            // js babel for convert ts file to js file
+            // js babel
             {   
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
@@ -87,31 +93,28 @@ module.exports = (env, argv) => ({
    
     //  // Plugins
     plugins:[
-        // this is use for path of the file for css path in dev and prod
         new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            // filename: devMode ? "[name].css" : "./css/scss/[name].[contenthash].css",
             filename: devMode ? "./css/scss/[name].[contenthash].css" : "[name].css",
         }),
-
-        // HtmlWebpackPartialsPlugin is use for intgrate componet in html pages  
         new HtmlWebpackPartialsPlugin({
             path:path.join(__dirname,'./src/header.html'),
             location:'header',
             template_filename: htmlFileName
         }),
-
-        // HtmlWebpackPartialsPlugin is use for intgrate componet in html pages  
         new HtmlWebpackPartialsPlugin({
             path:path.join(__dirname,'./src/footer.html'),
             location:'footer',
             template_filename: htmlFileName
         }),
-        // to use jquery globle in project 
-        new webpack.ProvidePlugin({
+       new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             'window.jQuery': 'jquery'
         }),
-       // copy asset of dist in prod
+       // copy asset of dist
         new CopyPlugin({
             patterns: [
                 { from: './src/assets', to: './assets' },
@@ -121,6 +124,6 @@ module.exports = (env, argv) => ({
             ],
           })
       
-    //    add  the html pages in plugin
+    //    new CleanWebpackPlugin(['dist'])
     ].concat(multipleHtmlPlugins)
 })
