@@ -4,7 +4,10 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
 import  '../css/sass/index.scss';
 import lozad from 'lozad';
-
+// var modernizr = require("modernizr");
+// // .js
+// // import "./modernizr";
+// import "./dlmenu";
 import {gotoId, playPause} from "./main";   // import the function from another file
 
 import contentData  from "./showDate.json"; // iport the json obj from another json file
@@ -105,13 +108,19 @@ $(document).ready(function() {
   
   if ($('#bannerCarousel').length) {
     let bannerCarousel = $("#bannerCarousel").owlCarousel({
-      margin: 60,
+      margin: 20,
       items: 1,
       dots: false,
       nav: true,
       // center: true,
-      stagePadding: 200,
-      navText : ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      stagePadding: 40,
+      navText : ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
+      responsive : {
+        1400 : {
+          stagePadding: 200,
+          margin: 60,
+        }
+      }
     })
     bannerCarousel.on('changed.owl.carousel', function(event) {
       var active = $("#bannerCarousel").find(".owl-item.active");
@@ -124,85 +133,129 @@ $(document).ready(function() {
   };
   if ($('#filmsCarousel').length) {
     let filmsCarousel = $("#filmsCarousel").owlCarousel({
-      margin:30,
+      margin:20,
       items: 3,
       dots:false,
       nav:true,
-      stagePadding: 200,
-      navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      stagePadding: 40,
+      navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
+      responsive : {
+        1400 : {
+          stagePadding: 200,
+          margin: 60,
+        }
+      }
     })
   };
   if ($('#socialCarousel').length) {
     let socialCarousel = $("#socialCarousel").owlCarousel({
       margin:40,
-      items: 3.8,
+      items: 2.8,
       dots:false,
       nav:true,
       // center:true,
       stagePadding: 200,
-      navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
       autoplayTimeout: 5000,
       loop:true,
       smartSpeed: 2000,
+      responsive : {
+        1400 : {
+          items: 3.8,
+        }
+      }
     })
   };
   if ($('#performanceCarousel').length) {
     let performanceCarousel = $("#performanceCarousel").owlCarousel({
       margin:40,
-      items: 3.8,
+      items: 2.8,
       dots:false,
       nav:true,
       // center:true,
       stagePadding: 200,
-      navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
       autoplayTimeout: 5000,
       loop:true,
       smartSpeed: 2000,
+      responsive : {
+        1400 : {
+          items: 3.8,
+        }
+      }
     })
   };
   if ($('#uiUxCarousel').length) {
     let uiUxCarousel = $("#uiUxCarousel").owlCarousel({
-      margin:40,
+      margin:20,
       items: 2,
       dots:false,
       nav:true,
       // center:true,
-      stagePadding: 200,
-      navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      stagePadding: 40,
+      navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
       autoplayTimeout: 5000,
       // loop:true,
       smartSpeed: 2000,
+      responsive : {
+        1400 : {
+          stagePadding: 200,
+          margin: 60,
+        }
+      }
+
     })
   };
   if ($('#brandsCarousel').length) {
     let brandsCarousel = $("#brandsCarousel").owlCarousel({
-      margin:40,
+      margin:20,
       items: 4,
       dots:false,
       nav:true,
       // center:true,
-      stagePadding: 200,
-      navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      stagePadding: 40,
+      navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
       autoplayTimeout: 5000,
       // loop:true,
       smartSpeed: 2000,
+      responsive : {
+        1400 : {
+          stagePadding: 200,
+          margin: 60,
+        }
+      }
     })
   };
   if ($('#caseStudiesCarousel').length) {
     let caseStudiesCarousel = $("#caseStudiesCarousel").owlCarousel({
       margin:0,
-      items: 1.6,
+      items: 1,
       dots:false,
       nav:true,
       center:true,
       stagePadding: 200,
-      navText: ["<img src='./../img/arrow.png'>","<img src='./../img/arrow.png'>"],
+      navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
       autoplayTimeout: 5000,
       loop:true,
       smartSpeed: 2000,
+      responsive : {
+        1400 : {
+          items: 1.6,
+        }
+      }
     })
   };
 });
+
+
+let obj = {
+  name:"Shubham",
+  printD: function(){
+    console.log(this)
+  }
+}
+
+obj.printD()
 
 // get js file from the below file to use
 import "./page-animation/barba";

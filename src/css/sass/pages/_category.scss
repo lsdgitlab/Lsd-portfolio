@@ -1,6 +1,12 @@
 .category-page{
+  header{
+    border-bottom: 1px solid #66666b;
+  }
   background-color: #404046;
-  padding-top: 220px;
+  .main-warpper{
+    padding-top: 60px;
+
+  }
   overflow: hidden;
   .title-row{
     justify-content: space-between;
