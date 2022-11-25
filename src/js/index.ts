@@ -134,15 +134,22 @@ $(document).ready(function() {
   if ($('#filmsCarousel').length) {
     let filmsCarousel = $("#filmsCarousel").owlCarousel({
       margin:20,
-      items: 3,
+      
       dots:false,
       nav:true,
       stagePadding: 40,
       navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
       responsive : {
+        0 : {
+          items: 2,
+        },
+        768 : {
+          items: 2,
+        },
         1400 : {
           stagePadding: 200,
           margin: 60,
+          items: 3,
         }
       }
     })
@@ -154,14 +161,22 @@ $(document).ready(function() {
       dots:false,
       nav:true,
       // center:true,
-      stagePadding: 200,
+      
       navText: ["<img src='./img/arrow.png'>","<img src='./img/arrow.png'>"],
       autoplayTimeout: 5000,
       loop:true,
       smartSpeed: 2000,
       responsive : {
+        0 : {
+          items: 2.2,
+          stagePadding: 40,
+        },
+        768 : {
+          items: 2.4,
+        },
         1400 : {
           items: 3.8,
+          stagePadding: 200,
         }
       }
     })
@@ -239,6 +254,7 @@ $(document).ready(function() {
       loop:true,
       smartSpeed: 2000,
       responsive : {
+
         1400 : {
           items: 1.6,
         }
@@ -247,15 +263,6 @@ $(document).ready(function() {
   };
 });
 
-
-let obj = {
-  name:"Shubham",
-  printD: function(){
-    console.log(this)
-  }
-}
-
-obj.printD()
 
 // get js file from the below file to use
 import "./page-animation/barba";

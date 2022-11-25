@@ -817,4 +817,47 @@
   .home-page .case-studies-section .case-studies-carousel .owl-item .art-card .bottom-row {
     padding: 24px;
   }
+  .home-page .banner-section h1 {
+    font-size: 32px;
+  }
+  .home-page .banner-section p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .link-title h2 {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article {
+    padding: 16px;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article .top-row .dimond {
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article .play-btn{
+    width: 48px;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article .bottom-row .video-info .media-logo{
+    width: 60px;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article .bottom-row .video-info .item-content {
+    width: calc(100% - 60px);
+    padding-left: 18px;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article .bottom-row .video-info .item-content h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article .bottom-row .video-info .item-content p {
+    font-size: 12px;
+  }
+  .home-page .feature-section .articles-carousel .owl-item .art-card .image-container article .top-row .dimond .number {
+    left: 24px;
+    font-size: 8px;
+    min-width: 12px;
+    height: 17px;
+    padding: 4px;
+  }
 }
